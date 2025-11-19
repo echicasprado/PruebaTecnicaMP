@@ -1,0 +1,1 @@
+Copyright (c) 2025 Ever Chicas. Todos los derechos reservados.
