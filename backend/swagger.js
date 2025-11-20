@@ -14,6 +14,87 @@ const swaggerDefinition = {
     },
   ],
   components: {
+    schemas: {
+      Expediente: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'integer',
+            format: 'int64'
+          },
+          descripcion: {
+            type: 'string'
+          },
+          justificacion_rechazo: {
+            type: 'string'
+          },
+          tecnico_id: {
+            type: 'integer'
+          },
+          coordinador_id: {
+            type: 'integer'
+          },
+          estado_id: {
+            type: 'integer'
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time'
+          },
+          available: {
+            type: 'boolean'
+          }
+        }
+      }
+      Indicio: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'integer',
+            format: 'int64'
+          },
+          descripcion: {
+            type: 'string'
+          },
+          color: {
+            type: 'string'
+          },
+          tamanio: {
+            type: 'string'
+          },
+          peso: {
+            type: 'string'
+          },
+          ubicacion: {
+            type: 'string'
+          },
+          tecnica_registrada: {
+            type: 'string'
+          },
+          tecnico_id: {
+            type: 'integer'
+          },
+          expediente_id: {
+            type: 'integer'
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time'
+          },
+          available: {
+            type: 'boolean'
+          }
+        }
+      }
+    },
     securitySchemes: {
       bearerAuth: {
         type: 'http',
