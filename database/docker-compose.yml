@@ -5,10 +5,13 @@ services:
     ports:
       - "1433:1433"
     environment:
-      SA_PASSWORD: "Root1234" # Cambia esta contraseña
+      SA_PASSWORD: "Root1234"
       ACCEPT_EULA: "Y"
     volumes:
       - sql_server_data:/var/opt/mssql
+      - ./script.sql:/script.sql
+      - ./sps_prueba.sql:/sps_prueba.sql
+      - ./data_dummy.sql:/data_dummy.sql
 
 volumes:
   sql_server_data:
