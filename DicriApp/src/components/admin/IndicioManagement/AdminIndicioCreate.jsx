@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCreateIndicio } from '../../../../hooks/useIndicios';
-import { useExpedientes } from '../../../../hooks/useExpedientes';
-import { useUsuarios } from '../../../../hooks/useUsuarios';
+import { useCreateIndicio } from '../../../hooks/useIndicios';
+import { useExpedientes } from '../../../hooks/useExpedientes';
+import { useUsuarios } from '../../../hooks/useUsuarios';
 import UserSelect from '../../common/UserSelect';
 
 // Role IDs

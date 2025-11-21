@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUsuarios } from '../../../hooks/useUsuarios';
+import { useUsuarios } from '../../hooks/useUsuarios';
 
 function UserSelect({ value, onChange, label = 'Usuario', required = false, disabled = false, filterRoleId = null }) {
   const { data: usuarios, loading, error } = useUsuarios();

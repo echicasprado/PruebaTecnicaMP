@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthStatus } from '../../../hooks/useAuth';
-import { useIndicio, useUpdateIndicio } from '../../../hooks/useIndicios'; // Use useIndicio for single fetch
+import { useIndicio, useUpdateIndicio } from '../../../hooks/useIndicios';
 
-// Role IDs
 const TECNICO = 2;
 
 function TecnicoIndicioEdit() {
@@ -30,10 +29,9 @@ function TecnicoIndicioEdit() {
 
   useEffect(() => {
     if (indicio) {
-      // Check if the logged-in technician owns this indicio
       if (indicio.tecnico_id !== loggedInUserId) {
         alert('No tienes permiso para editar este indicio.');
-        navigate(`/tecnico/expedientes/${indicio.expediente_id}/indicios`); // Redirect to indicios list for that expediente
+        navigate(`/tecnico/expedientes/${indicio.expediente_id}/indicios`);
         return;
       }
       setDescripcion(indicio.descripcion);
@@ -58,7 +56,7 @@ function TecnicoIndicioEdit() {
           tecnica_registrada: tecnicaRegistrada,
         });
         alert('Indicio actualizado con éxito!');
-        navigate(`/tecnico/expedientes/${indicio?.expediente_id}/indicios`); // Redirect to list of indicios for that expediente
+        navigate(`/tecnico/expedientes/${indicio?.expediente_id}/indicios`);
       } catch (err) {
         console.error('Error al actualizar indicio:', err);
       }

@@ -30,15 +30,6 @@ function Navbar() {
 
     let items = [];
 
-    // Common items or profile link (will add a proper profile page later if needed)
-    // items.push(
-    //   <li key="profile">
-    //     <Link to="/profile" className="text-white hover:text-blue-200">
-    //       Mi Perfil
-    //     </Link>
-    //   </li>
-    // );
-
     switch (roleId) {
       case ADMIN:
         items.push(

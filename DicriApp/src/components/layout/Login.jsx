@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLogin, useAuthStatus } from '../../hooks/useAuth';
+import AppLayout from './AppLayout';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,23 +10,20 @@ function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // Aquí podrías redirigir al usuario a la página principal o dashboard
       console.log('Usuario ya autenticado. Redirigiendo...');
-      // Ejemplo: navigate('/dashboard'); si usas react-router-dom
     }
   }, [isAuthenticated]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await loginUser({ email, password });
-      // Si el login es exitoso, el hook useAuthStatus detectará el cambio en localStorage
       console.log('Inicio de sesión exitoso:', data);
     } catch (err) {
       console.error('Error al iniciar sesión:', err);
     }
   };
-
+  
   if (isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">

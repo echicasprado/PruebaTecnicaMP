@@ -18,7 +18,7 @@ const apiFetch = async (endpoint, { method = 'GET', body, signal, ...customConfi
       ...headers,
       ...customConfig.headers,
     },
-    signal, // Pass the signal to the fetch config
+    signal,
     ...customConfig,
   };
 
@@ -35,7 +35,7 @@ const apiFetch = async (endpoint, { method = 'GET', body, signal, ...customConfi
     }
     
     if (response.status === 204) {
-      return null; // No content
+      return null;
     }
 
     return await response.json();

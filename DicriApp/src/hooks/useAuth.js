@@ -18,17 +18,17 @@ export function useAuthStatus() {
     useEffect(() => {
         const checkAuth = () => {
             const token = localStorage.getItem('token');
-            const role = localStorage.getItem('roleId'); // Get roleId from localStorage
+            const role = localStorage.getItem('roleId');
             setAuthStatus({
                 isAuthenticated: !!token,
-                roleId: role ? parseInt(role, 10) : null // Parse roleId to number
+                roleId: role ? parseInt(role, 10) : null
             });
         };
 
-        checkAuth(); // Initial check
+        checkAuth();
 
         const handleStorageChange = () => {
-            checkAuth(); // Re-check on storage events
+            checkAuth();
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -53,7 +53,6 @@ export function useLogin() {
     try {
       const data = await apiLogin(credentials);
       setState({ loading: false, error: null, data });
-      // Manually trigger a storage event to update useAuthStatus hook in other tabs/windows
       window.dispatchEvent(new Event('storage'));
       return data;
     } catch (error) {

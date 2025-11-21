@@ -8,10 +8,11 @@ export const login = async (credentials, options) => {
   });
   if (data.token) {
     localStorage.setItem('token', data.token);
+    
     if (data.role) {
       localStorage.setItem('roleId', data.role);
     }
-    // Assuming data.id contains the user's ID
+    
     if (data.id) {
       localStorage.setItem('userId', data.id);
     }
@@ -30,7 +31,7 @@ export const register = async (userData, options) => {
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('roleId');
-  localStorage.removeItem('userId'); // Also remove userId on logout
+  localStorage.removeItem('userId');
 };
 
 export const getProtectedData = async (options) => {

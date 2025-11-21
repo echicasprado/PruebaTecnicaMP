@@ -5,7 +5,6 @@ import { useExpediente, useUpdateExpediente } from '../../../hooks/useExpediente
 import { useEstados } from '../../../hooks/useEstados';
 import UserSelect from '../../common/UserSelect';
 
-// Role IDs
 const TECNICO = 2;
 const COORDINADOR = 3;
 
@@ -22,8 +21,7 @@ function TecnicoExpedienteEdit() {
   const [descripcion, setDescripcion] = useState('');
   const [coordinadorId, setCoordinadorId] = useState('');
 
-  // Find the 'abierto' estado ID
-  const estadoAbiertoId = estados?.find(estado => estado.nombre.toLowerCase() === 'abierto')?.id;
+  const estadoAbiertoId = estados?.find(estado => estado.nombre.toLowerCase() === 'en proceso')?.id;
 
   useEffect(() => {
     if (!isAuthenticated || roleId !== TECNICO) {
@@ -33,16 +31,15 @@ function TecnicoExpedienteEdit() {
 
   useEffect(() => {
     if (expediente) {
-      // Check if the logged-in technician owns this expediente
       if (expediente.tecnico_id !== loggedInUserId) {
         alert('No tienes permiso para editar este expediente.');
-        navigate('/tecnico/expedientes'); // Redirect if not owner
+        navigate('/tecnico/expedientes');
         return;
       }
-      // Check if the expediente is 'abierto'
+
       if (expediente.estado_id !== estadoAbiertoId) {
         alert('Este expediente no puede ser editado porque no está en estado "abierto".');
-        navigate('/tecnico/expedientes'); // Redirect if not open
+        navigate('/tecnico/expedientes');
         return;
       }
       setDescripcion(expediente.descripcion);
@@ -59,7 +56,7 @@ function TecnicoExpedienteEdit() {
           coordinador_id: coordinadorId,
         });
         alert('Expediente actualizado con éxito!');
-        navigate('/tecnico/expedientes'); // Redirect to list of expedientes
+        navigate('/tecnico/expedientes');
       } catch (err) {
         console.error('Error al actualizar expediente:', err);
       }

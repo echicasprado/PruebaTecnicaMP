@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEstados } from '../../../hooks/useEstados';
+import { useEstado } from '../../hooks/useEstados';
 
 function EstadoSelect({ value, onChange, label = 'Estado', required = false, disabled = false }) {
   const { data: estados, loading, error } = useEstados();

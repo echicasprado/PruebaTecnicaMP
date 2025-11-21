@@ -8,8 +8,6 @@ import {
   deleteIndicio as apiDeleteIndicio,
 } from '../services/indicioService';
 
-// Similar structure to useExpedientes, but for Indicios
-
 export function useIndicios() {
   const [state, setState] = useState({ data: [], loading: true, error: null });
 
