@@ -5,6 +5,9 @@ const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 const apiRouter = require('./routes/api');
+
+console.log(swaggerSpec);
+
 const { connectDb } = require('./config/db');
 const db = require('./models'); // Import the centralized db object
 const app = express();

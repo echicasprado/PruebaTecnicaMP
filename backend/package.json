@@ -4,8 +4,8 @@
   "description": "API - Prueba tecnica MP",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "node swagger.js && nodemon index.js",
+    "start": "node swagger.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -15,6 +15,35 @@ const swaggerDefinition = {
   ],
   components: {
     schemas: {
+      User: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'integer',
+            format: 'int64'
+          },
+          email: {
+            type: 'string'
+          },
+          nombre: {
+            type: 'string'
+          },
+          rol_id: {
+            type: 'integer'
+          },
+          available: {
+            type: 'boolean'
+          },
+          created_at: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updated_at: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
+      },
       Expediente: {
         type: 'object',
         properties: {
@@ -49,7 +78,7 @@ const swaggerDefinition = {
             type: 'boolean'
           }
         }
-      }
+      },
       Indicio: {
         type: 'object',
         properties: {
@@ -107,7 +136,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: ['./routes/*.js'],
+  apis: ['./routes/swagger-docs.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
