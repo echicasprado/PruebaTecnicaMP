@@ -37,7 +37,9 @@ function Login() {
     e.preventDefault();
     try {
       const data = await loginUser({ email, password });
-      redirectToDashboard(data.user.rol);
+      if (data && data.user){
+        redirectToDashboard(data.user.rol);
+      }
     } catch (err) {
       console.error('Error al iniciar sesión:', err);
     }
