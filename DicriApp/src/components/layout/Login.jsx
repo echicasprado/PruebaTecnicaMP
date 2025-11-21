@@ -1,24 +1,43 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLogin, useAuthStatus } from '../../hooks/useAuth';
-import AppLayout from './AppLayout';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginUser, { loading, error, data }] = useLogin();
-  const isAuthenticated = useAuthStatus();
+  const { isAuthenticated, roleId } = useAuthStatus();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
       console.log('Usuario ya autenticado. Redirigiendo...');
+      redirectToDashboard(roleId);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, roleId, navigate]);
   
+  const redirectToDashboard = (id_rol) => {
+    switch (id_rol) {
+      case 1:
+        navigate('/admin');
+        break;
+      case 2:
+        navigate('/tecnico');
+        break;
+      case 3:
+        navigate('/coordinador');
+        break;
+      default:
+        navigate('/');
+        break;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await loginUser({ email, password });
-      console.log('Inicio de sesión exitoso:', data);
+      const data = await loginUser({ email, password });
+      redirectToDashboard(data.user.rol);
     } catch (err) {
       console.error('Error al iniciar sesión:', err);
     }
@@ -29,8 +48,7 @@ function Login() {
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md text-center">
           <h2 className="text-2xl font-bold mb-4 text-green-600">¡Ya estás autenticado!</h2>
-          <p className="text-gray-700">Bienvenido de nuevo.</p>
-          {/* Aquí podrías añadir un botón para ir al dashboard, etc. */}
+          <p className="text-gray-700">Redirigiendo a tu panel...</p>
         </div>
       </div>
     );
@@ -65,6 +83,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              autocomplete="current-password"
             />
           </div>
           <button
@@ -77,11 +96,6 @@ function Login() {
           {error && (
             <p className="mt-2 text-center text-sm text-red-600">
               Error: {error.message || 'Credenciales inválidas.'}
-            </p>
-          )}
-          {data && !error && ( // Only show success if no error
-            <p className="mt-2 text-center text-sm text-green-600">
-              ¡Sesión iniciada con éxito!
             </p>
           )}
         </form>
